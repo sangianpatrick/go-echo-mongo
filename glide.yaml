@@ -1,0 +1,3 @@
+package: github.com/sangianpatrick/go-mongo
+import:
+- package: gopkg.in/mgo.v2
