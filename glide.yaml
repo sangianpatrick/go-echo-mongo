@@ -1,3 +1,5 @@
 package: github.com/sangianpatrick/go-mongo
 import:
 - package: gopkg.in/mgo.v2
+- package: github.com/labstack/echo
+  version: v4.0.0

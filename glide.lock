@@ -1,6 +1,13 @@
-hash: 19c5fd840409d56e0ec9a220e876bdf40bed5a714ef7be1b274324fb61a77854
-updated: 2019-03-27T00:59:23.917033148+07:00
+hash: d12af2de70408ee7570aec71e756b819f8234ef90d91b153b5b97cf39e556f24
+updated: 2019-03-27T09:50:53.454262277+07:00
 imports:
+- name: github.com/labstack/echo
+  version: 6d9e043284aea2d07f5fcaf0d3a424eb7d9f6109
 - name: gopkg.in/mgo.v2
   version: 9856a29383ce1c59f308dd1cf0363a79b5bef6b5
+  subpackages:
+  - bson
+  - internal/json
+  - internal/sasl
+  - internal/scram
 testImports: []

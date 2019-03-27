@@ -6,13 +6,13 @@ import (
 
 // User is property info
 type User struct {
-	ID        string    `bson:"id"`
-	FirstName string    `bson:"firstName"`
-	LastName  string    `bson:"lastName"`
-	Email     string    `bson:"email"`
-	Password  string    `bson:"password"`
-	CreatedAt time.Time `bson:"createdAt"`
-	UpdatedAt time.Time `bson:"updatedAt"`
+	UserID    string    `bson:"userId" json:"userId"`
+	FirstName string    `bson:"firstName" json:"firstName"`
+	LastName  string    `bson:"lastName" json:"lastName"`
+	Email     string    `bson:"email" json:"email"`
+	Password  string    `bson:"password" json:"password"`
+	CreatedAt time.Time `bson:"createdAt" json:"createdAt"`
+	UpdatedAt time.Time `bson:"updatedAt" json:"updatedAt"`
 }
 
 // Users is a slice of "User"

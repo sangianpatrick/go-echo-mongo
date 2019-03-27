@@ -30,22 +30,22 @@ func (r *userRepositoryMongo) Save(user *model.User) error {
 }
 
 // Update is a function to update existing user
-func (r *userRepositoryMongo) Update(id string, user *model.User) error {
+func (r *userRepositoryMongo) Update(userID string, user *model.User) error {
 	user.UpdatedAt = time.Now()
-	err := r.db.C(r.collection).Update(bson.M{"id": id}, user)
+	err := r.db.C(r.collection).Update(bson.M{"userId": userID}, user)
 	return err
 }
 
 // Delete is a function to remove a record from User list
-func (r *userRepositoryMongo) Delete(id string) error {
-	err := r.db.C(r.collection).Remove(bson.M{"id": id})
+func (r *userRepositoryMongo) Delete(userID string) error {
+	err := r.db.C(r.collection).Remove(bson.M{"userId": userID})
 	return err
 }
 
 // FindByID is a function to get one user by ID
-func (r *userRepositoryMongo) FindByID(id string) (*model.User, error) {
+func (r *userRepositoryMongo) FindByID(userID string) (*model.User, error) {
 	var user model.User
-	err := r.db.C(r.collection).Find(bson.M{"id": id}).One(&user)
+	err := r.db.C(r.collection).Find(bson.M{"userId": userID}).One(&user)
 	if err != nil {
 		return nil, err
 	}
