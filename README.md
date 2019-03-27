@@ -3,11 +3,10 @@ Simple Golang application with MongoDB
 
 # How to run
 These are the steps to run this app: 
-- Make sure Golang,Glide(Go Package Manager), and MongoDB are installed
-- Go to project root directory
-- Run command ```glide install```
-- Run app command ```go run main.go```
-- Enjoy the app!
+1. Make sure Golang,Glide(Go Package Manager), and MongoDB are installed
+2. Go to project root directory
+3. Run command ```glide install```
+4. Run app command ```go run main.go```
 
 
 # References
