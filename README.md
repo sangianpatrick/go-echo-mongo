@@ -8,6 +8,14 @@ These are the steps to run this app:
 3. Run command ```glide install``` to install the dependencies
 4. Run command ```go run main.go``` to start the server
 
+# Endpoint
+These are the list of endpoint:
+
+Method       | URI               | Description
+------------ | ----------------- | -------------
+POST         | /users            | Create new user.
+GET          | /users/<:userID>  | Get user by ID.
+GET          | /users            | Get list of user.
 
 # References
 - [YouTube] (https://www.youtube.com/playlist?list=PLMrwI6jIZn-3a4Hjn-GoYihbMBAzZ6Ae3)
