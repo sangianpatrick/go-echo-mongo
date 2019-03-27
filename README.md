@@ -1,5 +1,5 @@
 # go-mongo
-Simple Golang application with MongoDB
+Simple Golang REST application with Echo Framework & MongoDB
 
 # How to run
 These are the steps to run this app: 
@@ -10,4 +10,5 @@ These are the steps to run this app:
 
 
 # References
-[youtube] (https://www.youtube.com/playlist?list=PLMrwI6jIZn-3a4Hjn-GoYihbMBAzZ6Ae3)
+[YouTube] (https://www.youtube.com/playlist?list=PLMrwI6jIZn-3a4Hjn-GoYihbMBAzZ6Ae3)
+[GitHub] (https://github.com/bxcodec/go-clean-arch)
