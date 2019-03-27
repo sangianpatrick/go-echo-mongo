@@ -11,11 +11,11 @@ These are the steps to run this app:
 # Endpoint
 These are the list of endpoint:
 
-Method       | URI               | Description
------------- | ----------------- | -------------
-POST         | /users            | Create new user.
-GET          | /users/<:userID>  | Get user by ID.
-GET          | /users            | Get list of user.
+Method       | Headers                          | URI               | Description
+------------ | -------------------------------- | ----------------- | -------------
+POST         | ```Accept: 'application/json'``` | /users            | Create new user.
+GET          | ```Accept: 'application/json'``` | /users/<:userID>  | Get user by ID.
+GET          | ```Accept: 'application/json'``` | /users            | Get list of user.
 
 # References
 - [YouTube] (https://www.youtube.com/playlist?list=PLMrwI6jIZn-3a4Hjn-GoYihbMBAzZ6Ae3)
