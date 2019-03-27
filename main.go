@@ -5,10 +5,10 @@ import (
 
 	"github.com/labstack/echo"
 
-	"github.com/sangianpatrick/go-mongo/src/modules/user/handler"
+	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/handler"
 
-	"github.com/sangianpatrick/go-mongo/config"
-	"github.com/sangianpatrick/go-mongo/src/modules/user/repository"
+	"github.com/sangianpatrick/go-echo-mongo/config"
+	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/repository"
 )
 
 func main() {

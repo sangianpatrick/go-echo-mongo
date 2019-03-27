@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/labstack/echo"
-	"github.com/sangianpatrick/go-mongo/src/modules/user/model"
-	"github.com/sangianpatrick/go-mongo/src/modules/user/repository"
+	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/model"
+	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/repository"
 	validator "gopkg.in/go-playground/validator.v9"
 )
 

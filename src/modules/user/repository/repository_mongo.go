@@ -6,7 +6,7 @@ import (
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/sangianpatrick/go-mongo/src/modules/user/model"
+	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/model"
 )
 
 // userRepositoryMongo is an instance connection of MongoDB

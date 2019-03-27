@@ -1,4 +1,4 @@
-package: github.com/sangianpatrick/go-mongo
+package: github.com/sangianpatrick/go-echo-mongo
 import:
 - package: gopkg.in/mgo.v2
 - package: github.com/labstack/echo

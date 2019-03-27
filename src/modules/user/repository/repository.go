@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/sangianpatrick/go-mongo/src/modules/user/model"
+	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/model"
 )
 
 // UserRepository interface is a list of method of user's model
