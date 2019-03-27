@@ -1,4 +1,4 @@
-# go-mongo
+# go-echo-mongo
 Simple Golang REST application with Echo Framework & MongoDB
 
 # How to run
