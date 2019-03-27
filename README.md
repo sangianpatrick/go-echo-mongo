@@ -10,5 +10,5 @@ These are the steps to run this app:
 
 
 # References
-[YouTube] (https://www.youtube.com/playlist?list=PLMrwI6jIZn-3a4Hjn-GoYihbMBAzZ6Ae3)
-[GitHub] (https://github.com/bxcodec/go-clean-arch)
+- [YouTube] (https://www.youtube.com/playlist?list=PLMrwI6jIZn-3a4Hjn-GoYihbMBAzZ6Ae3)
+- [GitHub] (https://github.com/bxcodec/go-clean-arch)
