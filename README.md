@@ -5,8 +5,8 @@ Simple Golang REST application with Echo Framework & MongoDB
 These are the steps to run this app: 
 1. Make sure Golang,Glide(Go Package Manager), and MongoDB are installed
 2. Go to project root directory (```$GOPATH/src/github.com/.../go-echo-mongo```)
-3. Run command ```glide install```
-4. Run app command ```go run main.go```
+3. Run command ```glide install``` to install the dependencies
+4. Run command ```go run main.go``` to start the server
 
 
 # References
