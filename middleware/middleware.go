@@ -30,6 +30,9 @@ func (am *AppMiddleware) CORS(next echo.HandlerFunc) echo.HandlerFunc {
 			wp.ResponseError["message"] = "Your request is not acceptable"
 			return c.JSON(http.StatusNotAcceptable, wp.ResponseError)
 		}
+		if c.Request().Method == "OPTIONS" {
+			return c.String(http.StatusOK, "")
+		}
 		return next(c)
 	}
 }
