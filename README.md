@@ -11,14 +11,14 @@ These are the steps to run this app:
 
 # Endpoint
 
-The request header should be:
-```Accept: "application/json"```
+The request header should contain:
+```Content-Type: "application/json"```
 
 The error response should be:
-```{"data":null,"error":true,"message":"error message"}```
+```{"data":null,"error":true,"message":<ERROR MESSAGE>}```
 
 The success response should be:
-```{"data":{<data>},"error":false,"message":"success message"}```
+```{"data":{<DATA>},"error":false,"message":<SUCCESS MESSAGE>}```
 
 These are the list of endpoint:
 
