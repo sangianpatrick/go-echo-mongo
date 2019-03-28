@@ -9,13 +9,23 @@ These are the steps to run this app:
 4. Run command ```go run main.go``` to start the server
 
 # Endpoint
+
+The request header should be:
+```Accept: "application/json"```
+
+The error response should be:
+```{"data":null,"error":true,"message":"error message"}```
+
+The success response should be:
+```{"data":{<data>},"error":false,"message":"success message"}```
+
 These are the list of endpoint:
 
-Method       | Headers                          | URI               | Description       | Response Success |
------------- | -------------------------------- | ----------------- | -----------------
-POST         | ```Accept: 'application/json'``` | /users            | Create new user.  | ```{"data":{"userId":"USER001","firstName":"Patrick","lastName":"Sangian","email":"patricksangian@gmail.com","password":"14qwafzx","createdAt":"2019-03-27T16:57:35.604+07:00","updatedAt":"2019-03-27T16:57:35.604+07:00"},"error":false,"message":"Detail of user"}``` |
-GET          | ```Accept: 'application/json'``` | /users/<:userID>  | Get user by ID.   ||
-GET          | ```Accept: 'application/json'``` | /users            | Get list of user. ||
+Method       | URI              | Description
+------------ | ---------------- | -------------
+POST         | /users           | Create new user.
+GET          | /users/<:userID> | Get user by ID.
+GET          | /users           | Get list of user.
 
 # References
 - [YouTube] (https://www.youtube.com/playlist?list=PLMrwI6jIZn-3a4Hjn-GoYihbMBAzZ6Ae3)
