@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 
@@ -11,11 +10,6 @@ import (
 	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/repository"
 	validator "gopkg.in/go-playground/validator.v9"
 )
-
-//ResponseError represent the reseponse error struct
-type ResponseError struct {
-	Message string `json:"message"`
-}
 
 // UserHandler represent the httphandler for article
 type UserHandler struct {
@@ -33,7 +27,7 @@ func NewUserHandler(e *echo.Echo, ur repository.UserRepository) {
 
 }
 
-//GetUser function to get message
+// GetUser function to get message
 func (h *UserHandler) GetUser(c echo.Context) error {
 	userID := c.Param("userID")
 	user, err := h.uUcase.FindByID(userID)
@@ -42,7 +36,7 @@ func (h *UserHandler) GetUser(c echo.Context) error {
 		return c.JSON(http.StatusNotFound, wrapper.ResponseError)
 	}
 	wrapper.ResponseSuccess["data"] = user
-	wrapper.ResponseSuccess["message"] = "Detail of user"
+	wrapper.ResponseSuccess["message"] = "Detail of user."
 	return c.JSON(http.StatusOK, wrapper.ResponseSuccess)
 }
 
@@ -50,10 +44,12 @@ func (h *UserHandler) GetUser(c echo.Context) error {
 func (h *UserHandler) GetAllUser(c echo.Context) error {
 	users, err := h.uUcase.FindAll()
 	if err != nil {
-		return c.JSON(http.StatusNotFound, ResponseError{Message: err.Error()})
+		wrapper.ResponseError["message"] = err.Error()
+		return c.JSON(http.StatusNotFound, wrapper.ResponseError)
 	}
 	if len(users) < 1 {
-		return c.JSON(http.StatusNoContent, ResponseError{Message: "User list is empty"})
+		wrapper.ResponseSuccess["message"] = "User list is empty"
+		return c.JSON(http.StatusNoContent, wrapper.ResponseSuccess)
 	}
 	wrapper.ResponseSuccess["data"] = users
 	wrapper.ResponseSuccess["message"] = "List of user"
@@ -80,34 +76,20 @@ func (h *UserHandler) CreateUser(c echo.Context) error {
 
 	err := c.Bind(&user)
 	if err != nil {
-		return c.JSON(http.StatusUnprocessableEntity, err.Error())
+		wrapper.ResponseError["message"] = err.Error()
+		return c.JSON(http.StatusUnprocessableEntity, wrapper.ResponseError)
 	}
 	if ok, err := isRequestValid(&user); !ok {
-		return c.JSON(http.StatusBadRequest, err.Error())
+		wrapper.ResponseError["message"] = err.Error()
+		return c.JSON(http.StatusBadRequest, wrapper.ResponseError)
 	}
 
 	err = h.uUcase.Save(&user)
 	if err != nil {
-		fmt.Println(err)
-		return c.JSON(http.StatusInternalServerError, ResponseError{Message: err.Error()})
+		wrapper.ResponseError["message"] = err.Error()
+		return c.JSON(http.StatusInternalServerError, wrapper.ResponseError)
 	}
-	return c.JSON(http.StatusCreated, user)
+	wrapper.ResponseSuccess["data"] = user
+	wrapper.ResponseSuccess["message"] = "A user has successfuly created."
+	return c.JSON(http.StatusCreated, wrapper.ResponseSuccess)
 }
-
-// func (a *HttpArticleHandler) FetchArticle(c echo.Context) error {
-
-// 	numS := c.QueryParam("num")
-// 	num, _ := strconv.Atoi(numS)
-// 	cursor := c.QueryParam("cursor")
-// 	ctx := c.Request().Context()
-// 	if ctx == nil {
-// 		ctx = context.Background()
-// 	}
-// 	listAr, nextCursor, err := a.AUsecase.Fetch(ctx, cursor, int64(num))
-
-// 	if err != nil {
-// 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
-// 	}
-// 	c.Response().Header().Set(`X-Cursor`, nextCursor)
-// 	return c.JSON(http.StatusOK, listAr)
-// }
