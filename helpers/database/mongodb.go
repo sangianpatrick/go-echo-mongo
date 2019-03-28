@@ -1,7 +1,6 @@
 package database
 
 import (
-	"fmt"
 	"time"
 
 	mgo "gopkg.in/mgo.v2"
@@ -9,7 +8,6 @@ import (
 
 // GetMongoDB is a function that will return MongoDB instance
 func GetMongoDB(c map[string]string) (*mgo.Database, error) {
-	fmt.Println(c)
 	dialInfo, err := mgo.ParseURL(c["host"])
 	if err != nil {
 		return nil, err

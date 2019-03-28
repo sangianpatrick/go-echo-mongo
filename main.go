@@ -29,6 +29,9 @@ func main() {
 		"db":       viper.GetString(`database.mongodb.db`),
 	}
 
+	appHost := viper.GetString(`app.domain`)
+	appPort := viper.GetString(`app.port`)
+
 	mongodb, err := db.GetMongoDB(mongoCredential)
 	if err != nil {
 		fmt.Println("MongoDB Error:", err)
@@ -42,6 +45,6 @@ func main() {
 
 	handler.NewUserHandler(e, urMongo)
 
-	e.Start("localhost:8000")
+	e.Start(appHost + ":" + appPort)
 
 }
