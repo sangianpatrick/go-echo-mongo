@@ -17,12 +17,10 @@ type User struct {
 
 //UserPublic is property that used for a response
 type UserPublic struct {
-	UserID    string    `bson:"userId" json:"userId"`
-	FirstName string    `bson:"firstName" json:"firstName"`
-	LastName  string    `bson:"lastName" json:"lastName"`
-	Email     string    `bson:"email" json:"email" validate:"required,email"`
-	CreatedAt time.Time `bson:"createdAt" json:"createdAt"`
-	UpdatedAt time.Time `bson:"updatedAt" json:"updatedAt"`
+	UserID    string `bson:"userId" json:"userId"`
+	FirstName string `bson:"firstName" json:"firstName"`
+	LastName  string `bson:"lastName" json:"lastName"`
+	Email     string `bson:"email" json:"email"`
 }
 
 // Users is a slice of "User"
