@@ -3,3 +3,5 @@ import:
 - package: gopkg.in/mgo.v2
 - package: github.com/labstack/echo
   version: v4.0.0
+- package: gopkg.in/go-playground/validator.v9
+  version: v9.27.0
