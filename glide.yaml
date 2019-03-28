@@ -5,3 +5,5 @@ import:
   version: v4.0.0
 - package: gopkg.in/go-playground/validator.v9
   version: v9.27.0
+- package: github.com/spf13/viper
+  version: v1.3.2

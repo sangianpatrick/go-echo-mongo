@@ -2,26 +2,43 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/labstack/echo"
+	"github.com/spf13/viper"
 
 	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/handler"
 
-	"github.com/sangianpatrick/go-echo-mongo/config"
+	db "github.com/sangianpatrick/go-echo-mongo/helpers/database"
 	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/repository"
 )
 
-func main() {
-	db, err := config.GetMongoDB()
-
+func init() {
+	viper.SetConfigFile(`./config/config.json`)
+	err := viper.ReadInConfig()
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
+	}
+}
+
+func main() {
+	var mongoCredential = map[string]string{
+		"host":     viper.GetString(`database.mongodb.host`),
+		"user":     viper.GetString(`database.mongodb.user`),
+		"password": viper.GetString(`database.mongodb.password`),
+		"db":       viper.GetString(`database.mongodb.db`),
 	}
 
-	defer db.Logout()
+	mongodb, err := db.GetMongoDB(mongoCredential)
+	if err != nil {
+		fmt.Println("MongoDB Error:", err)
+		os.Exit(1)
+	}
+
+	defer mongodb.Logout()
 	e := echo.New()
 
-	urMongo := repository.NewUserRepositoryMongo(db, "user")
+	urMongo := repository.NewUserRepositoryMongo(mongodb, "user")
 
 	handler.NewUserHandler(e, urMongo)
 

@@ -43,8 +43,8 @@ func (r *userRepositoryMongo) Delete(userID string) error {
 }
 
 // FindByID is a function to get one user by ID
-func (r *userRepositoryMongo) FindByID(userID string) (*model.User, error) {
-	var user model.User
+func (r *userRepositoryMongo) FindByID(userID string) (*model.UserPublic, error) {
+	var user model.UserPublic
 	err := r.db.C(r.collection).Find(bson.M{"userId": userID}).One(&user)
 	if err != nil {
 		return nil, err

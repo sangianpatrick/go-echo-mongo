@@ -9,6 +9,6 @@ type UserRepository interface {
 	Save(*model.User) error
 	Update(string, *model.User) error
 	Delete(string) error
-	FindByID(string) (*model.User, error)
+	FindByID(string) (*model.UserPublic, error)
 	FindAll() (model.Users, error)
 }

@@ -89,7 +89,6 @@ func (h *UserHandler) CreateUser(c echo.Context) error {
 		wrapper.ResponseError["message"] = err.Error()
 		return c.JSON(http.StatusInternalServerError, wrapper.ResponseError)
 	}
-	wrapper.ResponseSuccess["data"] = user
 	wrapper.ResponseSuccess["message"] = "A user has successfuly created."
 	return c.JSON(http.StatusCreated, wrapper.ResponseSuccess)
 }

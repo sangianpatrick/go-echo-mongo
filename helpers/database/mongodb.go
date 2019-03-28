@@ -1,26 +1,23 @@
-package config
+package database
 
 import (
+	"fmt"
 	"time"
 
 	mgo "gopkg.in/mgo.v2"
 )
 
 // GetMongoDB is a function that will return MongoDB instance
-func GetMongoDB() (*mgo.Database, error) {
-	host := "localhost:27017"
-	dbName := "mongotest"
-	user := "mongotest"
-	pwd := "14qwafzx"
-
-	dialInfo, err := mgo.ParseURL(host)
+func GetMongoDB(c map[string]string) (*mgo.Database, error) {
+	fmt.Println(c)
+	dialInfo, err := mgo.ParseURL(c["host"])
 	if err != nil {
 		return nil, err
 	}
 	dialInfo.Timeout = 5 * time.Second
-	dialInfo.Username = user
-	dialInfo.Password = pwd
-	dialInfo.Database = dbName
+	dialInfo.Username = c["user"]
+	dialInfo.Password = c["password"]
+	dialInfo.Database = c["db"]
 	dialInfo.Mechanism = ""
 
 	session, err := mgo.DialWithInfo(dialInfo)
@@ -28,6 +25,6 @@ func GetMongoDB() (*mgo.Database, error) {
 		return nil, err
 	}
 
-	db := session.DB(dbName)
+	db := session.DB(c["db"])
 	return db, nil
 }

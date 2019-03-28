@@ -1,5 +1,5 @@
-hash: 8a074e79804dfaae2275e8b89e8687a571dcc380e38089ce4c8c674df82e6585
-updated: 2019-03-28T12:48:03.715136955+07:00
+hash: 646199bc04b18d3a240f56994b6d19dfcd800e06ebbaee05dbddab0e8e98e61b
+updated: 2019-03-28T14:14:43.251170805+07:00
 imports:
 - name: github.com/go-playground/locales
   version: f63010822830b6fe52288ee52d5a1151088ce039
@@ -20,6 +20,8 @@ imports:
   version: 3a70a971f94a22f2fa562ffcc7a0eb45f5daf045
 - name: github.com/mattn/go-isatty
   version: c2a7a6ca930a4cd0bc33a3f298eb71960732a3a7
+- name: github.com/spf13/viper
+  version: 9e56dacc08fbbf8c9ee2dbc717553c758ce42bc9
 - name: github.com/valyala/bytebufferpool
   version: cdfbe9377474227bb42120c1e22fd4433e7f69bf
 - name: github.com/valyala/fasttemplate
