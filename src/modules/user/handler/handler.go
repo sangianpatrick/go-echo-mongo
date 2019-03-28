@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/labstack/echo"
+	"github.com/sangianpatrick/go-echo-mongo/helpers/wrapper"
 	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/model"
 	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/repository"
 	validator "gopkg.in/go-playground/validator.v9"
@@ -37,9 +38,12 @@ func (h *UserHandler) GetUser(c echo.Context) error {
 	userID := c.Param("userID")
 	user, err := h.uUcase.FindByID(userID)
 	if err != nil {
-		return c.JSON(http.StatusNotFound, ResponseError{Message: err.Error()})
+		wrapper.ResponseError["message"] = err.Error()
+		return c.JSON(http.StatusNotFound, wrapper.ResponseError)
 	}
-	return c.JSON(http.StatusOK, user)
+	wrapper.ResponseSuccess["data"] = user
+	wrapper.ResponseSuccess["message"] = "Detail of user"
+	return c.JSON(http.StatusOK, wrapper.ResponseSuccess)
 }
 
 // GetAllUser is a function to return list of user
@@ -51,7 +55,9 @@ func (h *UserHandler) GetAllUser(c echo.Context) error {
 	if len(users) < 1 {
 		return c.JSON(http.StatusNoContent, ResponseError{Message: "User list is empty"})
 	}
-	return c.JSON(http.StatusOK, users)
+	wrapper.ResponseSuccess["data"] = users
+	wrapper.ResponseSuccess["message"] = "List of user"
+	return c.JSON(http.StatusOK, wrapper.ResponseSuccess)
 }
 
 // isRequestValid is function that act as request body validator
