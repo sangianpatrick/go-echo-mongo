@@ -21,8 +21,10 @@ These are the steps to run this app:
 
 ```json
 {
-  "error":true,
-  "message":"ERROR MESSAGE"
+  "code": "<HTTP STATUS CODE: Error>"
+  "data": null,
+  "message":"Error message",
+  "success": false
 }
 ```
 
@@ -30,9 +32,10 @@ These are the steps to run this app:
 
 ```json
 {
-  "data": "DATA<could be string/object/array>",
-  "error":false,
-  "message":"ERROR MESSAGE"
+  "code": "<HTTP STATUS CODE: Success>"
+  "data": "<MULTI DATA TYPE: array, stirng and object>",
+  "message":"Success message",
+  "success": true
 }
 ```
 
