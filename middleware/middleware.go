@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo"
-	wp "github.com/sangianpatrick/go-echo-mongo/helpers/wrapper"
+	"github.com/sangianpatrick/go-echo-mongo/helpers/wrapper"
 )
 
 // AppMiddleware is package that contains function for filtering request
@@ -27,8 +27,7 @@ func (am *AppMiddleware) CORS(next echo.HandlerFunc) echo.HandlerFunc {
 		c.Response().Header().Set("Accept", "application/json")
 		if contentType != "application/json" {
 			fmt.Println(contentType)
-			wp.ResponseError["message"] = "Your request is not acceptable"
-			return c.JSON(http.StatusNotAcceptable, wp.ResponseError)
+			return wrapper.Error(http.StatusNotAcceptable, "request is not acceptable due to policy", c)
 		}
 		if c.Request().Method == "OPTIONS" {
 			return c.String(http.StatusOK, "")

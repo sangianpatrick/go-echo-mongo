@@ -1,14 +1,34 @@
 package wrapper
 
-// ResponseError a helper to wrapping error data for response
-var ResponseError = map[string]interface{}{
-	"error":   true,
-	"message": "",
+import (
+	"github.com/labstack/echo"
+)
+
+// Props contains properties to be responded
+type Props struct {
+	Code    int         `json:"code"`
+	Data    interface{} `json:"data"`
+	Message string      `json:"message"`
+	Success bool        `json:"success"`
 }
 
-// ResponseSuccess a helper to wrapping success data for response
-var ResponseSuccess = map[string]interface{}{
-	"error":   false,
-	"data":    nil,
-	"message": "",
+// Data returns wrapped success data
+func Data(code int, data interface{}, message string, c echo.Context) error {
+	props := &Props{
+		Code:    code,
+		Data:    data,
+		Message: message,
+		Success: true,
+	}
+	return c.JSON(code, props)
+}
+
+func Error(code int, message string, c echo.Context) error {
+	props := &Props{
+		Code:    code,
+		Data:    nil,
+		Message: message,
+		Success: false,
+	}
+	return c.JSON(code, props)
 }

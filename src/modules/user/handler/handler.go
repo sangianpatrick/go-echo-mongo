@@ -1,11 +1,12 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/labstack/echo"
-	wp "github.com/sangianpatrick/go-echo-mongo/helpers/wrapper"
+	"github.com/sangianpatrick/go-echo-mongo/helpers/wrapper"
 	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/model"
 	"github.com/sangianpatrick/go-echo-mongo/src/modules/user/repository"
 	validator "gopkg.in/go-playground/validator.v9"
@@ -32,28 +33,22 @@ func (h *UserHandler) GetUser(c echo.Context) error {
 	userID := c.Param("userID")
 	user, err := h.uUcase.FindByID(userID)
 	if err != nil {
-		wp.ResponseError["message"] = err.Error()
-		return c.JSON(http.StatusNotFound, wp.ResponseError)
+		fmt.Println(err)
+		return wrapper.Error(http.StatusNotFound, err.Error(), c)
 	}
-	wp.ResponseSuccess["data"] = user
-	wp.ResponseSuccess["message"] = "Detail of user."
-	return c.JSON(http.StatusOK, wp.ResponseSuccess)
+	return wrapper.Data(http.StatusOK, user, "user detail", c)
 }
 
 // GetAllUser is a function to return list of user
 func (h *UserHandler) GetAllUser(c echo.Context) error {
 	users, err := h.uUcase.FindAll()
 	if err != nil {
-		wp.ResponseError["message"] = err.Error()
-		return c.JSON(http.StatusNotFound, wp.ResponseError)
+		return wrapper.Error(http.StatusNotFound, err.Error(), c)
 	}
 	if len(users) < 1 {
-		wp.ResponseSuccess["message"] = "User list is empty"
-		return c.JSON(http.StatusNoContent, wp.ResponseSuccess)
+		return wrapper.Data(http.StatusNoContent, nil, "no content", c)
 	}
-	wp.ResponseSuccess["data"] = users
-	wp.ResponseSuccess["message"] = "List of user"
-	return c.JSON(http.StatusOK, wp.ResponseSuccess)
+	return wrapper.Data(http.StatusOK, users, "list of user", c)
 }
 
 // isRequestValid is function that act as request body validator
@@ -76,19 +71,16 @@ func (h *UserHandler) CreateUser(c echo.Context) error {
 
 	err := c.Bind(&user)
 	if err != nil {
-		wp.ResponseError["message"] = err.Error()
-		return c.JSON(http.StatusUnprocessableEntity, wp.ResponseError)
+		return wrapper.Error(http.StatusUnprocessableEntity, err.Error(), c)
 	}
 	if ok, err := isRequestValid(&user); !ok {
-		wp.ResponseError["message"] = err.Error()
-		return c.JSON(http.StatusBadRequest, wp.ResponseError)
+		return wrapper.Error(http.StatusBadRequest, err.Error(), c)
 	}
 
 	err = h.uUcase.Save(&user)
 	if err != nil {
-		wp.ResponseError["message"] = "User is already created."
-		return c.JSON(http.StatusConflict, wp.ResponseError)
+		fmt.Println(err.Error())
+		return wrapper.Error(http.StatusConflict, "user is already created", c)
 	}
-	wp.ResponseSuccess["message"] = "A user has successfuly created."
-	return c.JSON(http.StatusCreated, wp.ResponseSuccess)
+	return wrapper.Data(http.StatusCreated, nil, "user is created", c)
 }
